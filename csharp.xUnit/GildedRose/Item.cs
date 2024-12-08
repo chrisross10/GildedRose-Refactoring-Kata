@@ -76,7 +76,11 @@ public class Item
 
             if (SellIn < 0)
             {
-                if (Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (Name == "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    Quality -= Quality;
+                }
+                else
                 {
                     if (Quality > 0)
                     {
@@ -85,10 +89,6 @@ public class Item
                             Quality -= 1;
                         }
                     }
-                }
-                else
-                {
-                    Quality -= Quality;
                 }
             }
         }
