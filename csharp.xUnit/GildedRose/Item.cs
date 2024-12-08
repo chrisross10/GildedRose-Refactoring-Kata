@@ -55,6 +55,16 @@ public class Item
                         }
                     }
                 }
+
+                if (Name != "Sulfuras, Hand of Ragnaros")
+                {
+                    SellIn -= 1;
+                }
+
+                if (SellIn < 0)
+                {
+                    Quality -= Quality;
+                }
             }
             else
             {
@@ -65,20 +75,13 @@ public class Item
                         Quality -= 1;
                     }
                 }
-            }
 
-            if (Name != "Sulfuras, Hand of Ragnaros")
-            {
-                SellIn -= 1;
-            }
-
-            if (SellIn < 0)
-            {
-                if (isBackstagePasses)
+                if (Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    Quality -= Quality;
+                    SellIn -= 1;
                 }
-                else
+
+                if (SellIn < 0)
                 {
                     if (Quality > 0)
                     {
