@@ -53,10 +53,7 @@ public class Item
                     }
                 }
 
-                if (Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    SellIn -= 1;
-                }
+                SellIn -= 1;
 
                 if (SellIn < 0)
                 {
