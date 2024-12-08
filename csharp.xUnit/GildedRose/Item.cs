@@ -8,17 +8,9 @@ public class Item
 
     public void UpdateItem()
     {
-        if (Name != "Aged Brie" && Name != "Backstage passes to a TAFKAL80ETC concert")
-        {
-            if (Quality > 0)
-            {
-                if (Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    Quality -= 1;
-                }
-            }
-        }
-        else
+        var isAgedBrie = Name == "Aged Brie";
+        
+        if (isAgedBrie || Name == "Backstage passes to a TAFKAL80ETC concert")
         {
             if (Quality < 50)
             {
@@ -44,6 +36,16 @@ public class Item
                 }
             }
         }
+        else
+        {
+            if (Quality > 0)
+            {
+                if (Name != "Sulfuras, Hand of Ragnaros")
+                {
+                    Quality -= 1;
+                }
+            }
+        }
 
         if (Name != "Sulfuras, Hand of Ragnaros")
         {
@@ -52,7 +54,14 @@ public class Item
 
         if (SellIn < 0)
         {
-            if (Name != "Aged Brie")
+            if (isAgedBrie)
+            {
+                if (Quality < 50)
+                {
+                    Quality += 1;
+                }
+            }
+            else
             {
                 if (Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
@@ -67,13 +76,6 @@ public class Item
                 else
                 {
                     Quality -= Quality;
-                }
-            }
-            else
-            {
-                if (Quality < 50)
-                {
-                    Quality += 1;
                 }
             }
         }
