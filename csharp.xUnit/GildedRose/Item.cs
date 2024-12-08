@@ -9,6 +9,7 @@ public class Item
     public void UpdateItem()
     {
         var isAgedBrie = Name == "Aged Brie";
+        var isBackstagePasses = Name == "Backstage passes to a TAFKAL80ETC concert";
 
         if (isAgedBrie)
         {
@@ -32,13 +33,13 @@ public class Item
         }
         else
         {
-            if (Name == "Backstage passes to a TAFKAL80ETC concert")
+            if (isBackstagePasses)
             {
                 if (Quality < 50)
                 {
                     Quality += 1;
 
-                    if (Name == "Backstage passes to a TAFKAL80ETC concert")
+                    if (isBackstagePasses)
                     {
                         if (SellIn < 11)
                         {
@@ -76,7 +77,7 @@ public class Item
 
             if (SellIn < 0)
             {
-                if (Name == "Backstage passes to a TAFKAL80ETC concert")
+                if (isBackstagePasses)
                 {
                     Quality -= Quality;
                 }
