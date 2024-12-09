@@ -20,10 +20,9 @@ public class Item
             return;
         }
         
-        UpdateSellInDays(-1);
-        
         if (isAgedBrie)
         {
+            UpdateSellInDays(-1);
             UpdateQuality(SellIn switch
             {
                 < 0 => 2,
@@ -35,6 +34,7 @@ public class Item
 
         if (isBackstagePasses)
         {
+            UpdateSellInDays(-1);
             UpdateQuality(SellIn switch
             {
                 < 0 => 0,
@@ -46,6 +46,7 @@ public class Item
             return;
         }
 
+        UpdateSellInDays(-1);
         UpdateQuality(SellIn switch
         {
             < 0 => -2,
