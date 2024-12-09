@@ -14,10 +14,12 @@ public class Item
         var isBackstagePasses = Name == "Backstage passes to a TAFKAL80ETC concert";
         var isSulfuras = Name == "Sulfuras, Hand of Ragnaros";
 
+        if (isSulfuras) return;
+        
+        DecreaseSellInDays();
+        
         if (isAgedBrie)
         {
-            SellIn -= 1;
-
             if (SellIn < 0)
             {
                 UpdateQuality(2);
@@ -32,8 +34,6 @@ public class Item
 
         if (isBackstagePasses)
         {
-            SellIn -= 1;
-            
             if (SellIn < 0)
             {
                 Quality = 0;
@@ -51,10 +51,6 @@ public class Item
             return;
         }
 
-        if (isSulfuras) return;
-        
-        SellIn -= 1;
-
         if (SellIn < 0)
         {
             UpdateQuality(-2);
@@ -63,6 +59,11 @@ public class Item
         {
             UpdateQuality(-1);
         }
+    }
+
+    private void DecreaseSellInDays()
+    {
+        SellIn -= 1;
     }
 
     private void UpdateQuality(int change)
