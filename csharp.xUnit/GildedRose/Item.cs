@@ -10,28 +10,24 @@ public class Item
 
     public void UpdateItem()
     {
-        var isAgedBrie = Name == "Aged Brie";
-        var isBackstagePasses = Name == "Backstage passes to a TAFKAL80ETC concert";
-        var isSulfuras = Name == "Sulfuras, Hand of Ragnaros";
-
-        if (isSulfuras)
-        {
-            UpdateSulfuras();
-            
-            return;
-        }
-        
-        if (isAgedBrie)
+        if (Name == "Aged Brie")
         {
             UpdateAgedBrie();
 
             return;
         }
 
-        if (isBackstagePasses)
+        if (Name == "Backstage passes to a TAFKAL80ETC concert")
         {
             UpdateBackstagePasses();
 
+            return;
+        }
+
+        if (Name == "Sulfuras, Hand of Ragnaros")
+        {
+            UpdateSulfuras();
+            
             return;
         }
 
