@@ -4,11 +4,11 @@ namespace GildedRoseKata;
 
 public class GildedRose
 {
-    private readonly List<IUpdatableItem> _updatableItems;
+    private readonly List<UpdatableItem> _updatableItems;
 
     public GildedRose(IList<Item> Items)
     {
-        _updatableItems = new List<IUpdatableItem>();
+        _updatableItems = new List<UpdatableItem>();
         foreach (var item in Items)
         {
             _updatableItems.Add(item.Name switch
