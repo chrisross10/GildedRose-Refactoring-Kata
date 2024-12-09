@@ -1,4 +1,6 @@
-﻿namespace GildedRoseKata;
+﻿using System;
+
+namespace GildedRoseKata;
 
 public class Item
 {
@@ -14,13 +16,13 @@ public class Item
 
         if (isAgedBrie)
         {
-            UpdateQuality();
+            UpdateQuality(1);
 
             SellIn -= 1;
 
             if (SellIn < 0)
             {
-                UpdateQuality();
+                UpdateQuality(1);
             }
         }
         else
@@ -33,12 +35,12 @@ public class Item
 
                     if (SellIn < 11)
                     {
-                        UpdateQuality();
+                        UpdateQuality(1);
                     }
 
                     if (SellIn < 6)
                     {
-                        UpdateQuality();
+                        UpdateQuality(1);
                     }
                 }
 
@@ -53,30 +55,22 @@ public class Item
             {
                 if (isNotSulfuras)
                 {
-                    if (Quality > 0)
-                    {
-                        Quality -= 1;
-                    }
+                    UpdateQuality(-1);
 
                     SellIn -= 1;
 
                     if (SellIn < 0)
                     {
-                        if (Quality > 0)
-                        {
-                            Quality -= 1;
-                        }
+                        UpdateQuality(-1);
                     }
                 }
             }
         }
     }
 
-    private void UpdateQuality()
+    private void UpdateQuality(int change)
     {
-        if (Quality < 50)
-        {
-            Quality += 1;
-        }
+        Quality += change;
+        Quality = Math.Clamp(Quality, 0, 50);
     }
 }
