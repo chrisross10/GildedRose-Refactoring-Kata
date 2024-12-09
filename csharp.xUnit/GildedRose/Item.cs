@@ -29,19 +29,16 @@ public class Item
         {
             if (isBackstagePasses)
             {
-                if (Quality < 50)
+                UpdateQuality(1);
+
+                if (SellIn < 11)
                 {
-                    Quality += 1;
+                    UpdateQuality(1);
+                }
 
-                    if (SellIn < 11)
-                    {
-                        UpdateQuality(1);
-                    }
-
-                    if (SellIn < 6)
-                    {
-                        UpdateQuality(1);
-                    }
+                if (SellIn < 6)
+                {
+                    UpdateQuality(1);
                 }
 
                 SellIn -= 1;
