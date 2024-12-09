@@ -24,38 +24,38 @@ public class Item
             {
                 UpdateQuality(1);
             }
+
+            return;
         }
-        else
+
+        if (isBackstagePasses)
         {
-            if (isBackstagePasses)
+            UpdateQuality(SellIn switch
             {
-                UpdateQuality(SellIn switch
-                {
-                    < 6 => 3,
-                    < 11 => 2,
-                    _ => 1
-                });
+                < 6 => 3,
+                < 11 => 2,
+                _ => 1
+            });
 
-                SellIn -= 1;
+            SellIn -= 1;
 
-                if (SellIn < 0)
-                {
-                    Quality = 0;
-                }
+            if (SellIn < 0)
+            {
+                Quality = 0;
             }
-            else
+
+            return;
+        }
+
+        if (isNotSulfuras)
+        {
+            UpdateQuality(-1);
+
+            SellIn -= 1;
+
+            if (SellIn < 0)
             {
-                if (isNotSulfuras)
-                {
-                    UpdateQuality(-1);
-
-                    SellIn -= 1;
-
-                    if (SellIn < 0)
-                    {
-                        UpdateQuality(-1);
-                    }
-                }
+                UpdateQuality(-1);
             }
         }
     }
