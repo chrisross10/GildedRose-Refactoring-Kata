@@ -11,7 +11,13 @@ public class GildedRose
         _updatableItems = new List<IUpdatableItem>();
         foreach (var item in Items)
         {
-            _updatableItems.Add(new UpdatableItem(item));
+            _updatableItems.Add(item.Name switch
+            {
+                "Aged Brie" => new AgedBrieItem(item),
+                "Backstage passes to a TAFKAL80ETC concert" => new BackstagePassesItem(item),
+                "Sulfuras, Hand of Ragnaros" => new SulfurasItem(item),
+                _ => new DefaultItem(item)
+            });
         }
     }
 
