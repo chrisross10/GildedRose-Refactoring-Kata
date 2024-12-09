@@ -16,42 +16,63 @@ public class Item
 
         if (isSulfuras)
         {
-            UpdateSellInDays(0);
+            UpdateSulfuras();
+            
             return;
         }
         
         if (isAgedBrie)
         {
-            UpdateSellInDays(-1);
-            UpdateQuality(SellIn switch
-            {
-                < 0 => 2,
-                _ => 1
-            });
+            UpdateAgedBrie();
 
             return;
         }
 
         if (isBackstagePasses)
         {
-            UpdateSellInDays(-1);
-            UpdateQuality(SellIn switch
-            {
-                < 0 => 0,
-                < 5 => 3,
-                < 10 => 2,
-                _ => 1
-            });
+            UpdateBackstagePasses();
 
             return;
         }
 
+        UpdateDefaultItem();
+    }
+
+    private void UpdateDefaultItem()
+    {
         UpdateSellInDays(-1);
         UpdateQuality(SellIn switch
         {
             < 0 => -2,
             _ => -1
         });
+    }
+
+    private void UpdateBackstagePasses()
+    {
+        UpdateSellInDays(-1);
+        UpdateQuality(SellIn switch
+        {
+            < 0 => 0,
+            < 5 => 3,
+            < 10 => 2,
+            _ => 1
+        });
+    }
+
+    private void UpdateAgedBrie()
+    {
+        UpdateSellInDays(-1);
+        UpdateQuality(SellIn switch
+        {
+            < 0 => 2,
+            _ => 1
+        });
+    }
+
+    private void UpdateSulfuras()
+    {
+        UpdateSellInDays(0);
     }
 
     private void UpdateSellInDays(int days)
