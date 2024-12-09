@@ -12,7 +12,7 @@ public class Item
     {
         var isAgedBrie = Name == "Aged Brie";
         var isBackstagePasses = Name == "Backstage passes to a TAFKAL80ETC concert";
-        var isNotSulfuras = Name != "Sulfuras, Hand of Ragnaros";
+        var isSulfuras = Name == "Sulfuras, Hand of Ragnaros";
 
         if (isAgedBrie)
         {
@@ -51,18 +51,17 @@ public class Item
             return;
         }
 
-        if (isNotSulfuras)
-        {
-            SellIn -= 1;
+        if (isSulfuras) return;
+        
+        SellIn -= 1;
 
-            if (SellIn < 0)
-            {
-                UpdateQuality(-2);
-            }
-            else
-            {
-                UpdateQuality(-1);
-            }
+        if (SellIn < 0)
+        {
+            UpdateQuality(-2);
+        }
+        else
+        {
+            UpdateQuality(-1);
         }
     }
 
