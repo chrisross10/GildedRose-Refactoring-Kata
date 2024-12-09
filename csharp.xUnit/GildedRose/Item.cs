@@ -1,85 +1,17 @@
-﻿using System;
-
-namespace GildedRoseKata;
+﻿namespace GildedRoseKata;
 
 public class Item
 {
+    private readonly UpdateableItem _updateableItem;
+
+    public Item()
+    {
+        _updateableItem = new UpdateableItem(this);
+    }
+
     public string Name { get; set; }
     public int SellIn { get; set; }
     public int Quality { get; set; }
 
-    public void UpdateItem()
-    {
-        if (Name == "Aged Brie")
-        {
-            UpdateAgedBrie();
-
-            return;
-        }
-
-        if (Name == "Backstage passes to a TAFKAL80ETC concert")
-        {
-            UpdateBackstagePasses();
-
-            return;
-        }
-
-        if (Name == "Sulfuras, Hand of Ragnaros")
-        {
-            UpdateSulfuras();
-            
-            return;
-        }
-
-        UpdateDefaultItem();
-    }
-
-    private void UpdateDefaultItem()
-    {
-        UpdateSellInDays(-1);
-        UpdateQuality(SellIn switch
-        {
-            < 0 => -2,
-            _ => -1
-        });
-    }
-
-    private void UpdateBackstagePasses()
-    {
-        UpdateSellInDays(-1);
-        UpdateQuality(SellIn switch
-        {
-            < 0 => 0,
-            < 5 => 3,
-            < 10 => 2,
-            _ => 1
-        });
-    }
-
-    private void UpdateAgedBrie()
-    {
-        UpdateSellInDays(-1);
-        UpdateQuality(SellIn switch
-        {
-            < 0 => 2,
-            _ => 1
-        });
-    }
-
-    private void UpdateSulfuras()
-    {
-        UpdateSellInDays(0);
-    }
-
-    private void UpdateSellInDays(int days)
-    {
-        SellIn += days;
-    }
-
-    private void UpdateQuality(int change)
-    {
-        if (change == 0) Quality = 0;
-        Quality += change;
-        Quality = Math.Clamp(Quality, 0, 50);
-    }
+    public UpdateableItem UpdateableItem => _updateableItem;
 }
