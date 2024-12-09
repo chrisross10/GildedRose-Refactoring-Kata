@@ -45,7 +45,7 @@ public class Item
 
                 if (SellIn < 0)
                 {
-                    Quality -= Quality;
+                    UpdateQuality(-Quality);
                 }
             }
             else
