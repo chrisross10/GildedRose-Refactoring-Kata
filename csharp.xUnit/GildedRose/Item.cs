@@ -14,19 +14,13 @@ public class Item
 
         if (isAgedBrie)
         {
-            if (Quality < 50)
-            {
-                Quality += 1;
-            }
+            UpdateQuality();
 
             SellIn -= 1;
 
             if (SellIn < 0)
             {
-                if (Quality < 50)
-                {
-                    Quality += 1;
-                }
+                UpdateQuality();
             }
         }
         else
@@ -39,18 +33,12 @@ public class Item
 
                     if (SellIn < 11)
                     {
-                        if (Quality < 50)
-                        {
-                            Quality += 1;
-                        }
+                        UpdateQuality();
                     }
 
                     if (SellIn < 6)
                     {
-                        if (Quality < 50)
-                        {
-                            Quality += 1;
-                        }
+                        UpdateQuality();
                     }
                 }
 
@@ -81,6 +69,14 @@ public class Item
                     }
                 }
             }
+        }
+    }
+
+    private void UpdateQuality()
+    {
+        if (Quality < 50)
+        {
+            Quality += 1;
         }
     }
 }
