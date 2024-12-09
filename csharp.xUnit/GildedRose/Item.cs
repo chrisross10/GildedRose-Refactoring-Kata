@@ -16,11 +16,11 @@ public class Item
 
         if (isSulfuras)
         {
-            DecreaseSellInDays(0);
+            UpdateSellInDays(0);
             return;
         }
         
-        DecreaseSellInDays(1);
+        UpdateSellInDays(-1);
         
         if (isAgedBrie)
         {
@@ -53,9 +53,9 @@ public class Item
         });
     }
 
-    private void DecreaseSellInDays(int days)
+    private void UpdateSellInDays(int days)
     {
-        SellIn -= days;
+        SellIn += days;
     }
 
     private void UpdateQuality(int change)
