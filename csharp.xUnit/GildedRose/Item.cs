@@ -16,11 +16,13 @@ public class Item
 
         if (isAgedBrie)
         {
-            UpdateQuality(1);
-
             SellIn -= 1;
 
             if (SellIn < 0)
+            {
+                UpdateQuality(2);
+            }
+            else
             {
                 UpdateQuality(1);
             }
@@ -30,18 +32,20 @@ public class Item
 
         if (isBackstagePasses)
         {
-            UpdateQuality(SellIn switch
-            {
-                < 6 => 3,
-                < 11 => 2,
-                _ => 1
-            });
-
             SellIn -= 1;
-
+            
             if (SellIn < 0)
             {
                 Quality = 0;
+            }
+            else
+            {
+                UpdateQuality(SellIn switch
+                {
+                    < 5 => 3,
+                    < 10 => 2,
+                    _ => 1
+                });
             }
 
             return;
@@ -49,11 +53,13 @@ public class Item
 
         if (isNotSulfuras)
         {
-            UpdateQuality(-1);
-
             SellIn -= 1;
 
             if (SellIn < 0)
+            {
+                UpdateQuality(-2);
+            }
+            else
             {
                 UpdateQuality(-1);
             }
