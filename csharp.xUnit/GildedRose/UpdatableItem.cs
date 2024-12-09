@@ -7,12 +7,14 @@ public class UpdatableItem : IUpdatableItem
     private readonly Item _item;
     private readonly AgedBrieItem _agedBrieItem;
     private readonly BackstagePassesItem _backstagePassesItem;
+    private readonly SulfurasItem _sulfurasItem;
 
     public UpdatableItem(Item item)
     {
         _item = item;
         _agedBrieItem = new AgedBrieItem(item);
         _backstagePassesItem = new BackstagePassesItem(item);
+        _sulfurasItem = new SulfurasItem(item);
     }
 
     public void UpdateItem()
@@ -33,7 +35,7 @@ public class UpdatableItem : IUpdatableItem
 
         if (_item.Name == "Sulfuras, Hand of Ragnaros")
         {
-            UpdateSulfuras();
+            _sulfurasItem.UpdateItem();
             
             return;
         }
@@ -49,11 +51,6 @@ public class UpdatableItem : IUpdatableItem
             < 0 => -2,
             _ => -1
         });
-    }
-
-    private void UpdateSulfuras()
-    {
-        UpdateSellInDays(0);
     }
 
     private void UpdateSellInDays(int days)
