@@ -15,7 +15,7 @@ public class GildedRose
     {
         foreach (var item in Items)
         {
-            item.UpdateableItem.UpdateItem();
+            item.UpdatableItem.UpdateItem();
         }
     }
 }

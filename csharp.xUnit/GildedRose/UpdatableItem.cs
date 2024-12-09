@@ -2,11 +2,11 @@
 
 namespace GildedRoseKata;
 
-public class UpdateableItem
+public class UpdatableItem
 {
     private Item _item;
 
-    public UpdateableItem(Item item)
+    public UpdatableItem(Item item)
     {
         _item = item;
     }
