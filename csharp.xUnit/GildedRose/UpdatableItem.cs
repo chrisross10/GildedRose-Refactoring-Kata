@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GildedRoseKata;
+﻿namespace GildedRoseKata;
 
 public class UpdatableItem : IUpdatableItem
 {
@@ -8,6 +6,7 @@ public class UpdatableItem : IUpdatableItem
     private readonly AgedBrieItem _agedBrieItem;
     private readonly BackstagePassesItem _backstagePassesItem;
     private readonly SulfurasItem _sulfurasItem;
+    private readonly DefaultItem _defaultItem;
 
     public UpdatableItem(Item item)
     {
@@ -15,6 +14,7 @@ public class UpdatableItem : IUpdatableItem
         _agedBrieItem = new AgedBrieItem(item);
         _backstagePassesItem = new BackstagePassesItem(item);
         _sulfurasItem = new SulfurasItem(item);
+        _defaultItem = new DefaultItem(item);
     }
 
     public void UpdateItem()
@@ -40,28 +40,7 @@ public class UpdatableItem : IUpdatableItem
             return;
         }
 
-        UpdateDefaultItem();
+        _defaultItem.UpdateItem();
     }
 
-    private void UpdateDefaultItem()
-    {
-        UpdateSellInDays(-1);
-        UpdateQuality(_item.SellIn switch
-        {
-            < 0 => -2,
-            _ => -1
-        });
-    }
-
-    private void UpdateSellInDays(int days)
-    {
-        _item.SellIn += days;
-    }
-
-    private void UpdateQuality(int change)
-    {
-        if (change == 0) _item.Quality = 0;
-        _item.Quality += change;
-        _item.Quality = Math.Clamp(_item.Quality, 0, 50);
-    }
 }
