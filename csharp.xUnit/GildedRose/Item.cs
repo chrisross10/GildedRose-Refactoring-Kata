@@ -20,45 +20,33 @@ public class Item
         
         if (isAgedBrie)
         {
-            if (SellIn < 0)
+            UpdateQuality(SellIn switch
             {
-                UpdateQuality(2);
-            }
-            else
-            {
-                UpdateQuality(1);
-            }
+                < 0 => 2,
+                _ => 1
+            });
 
             return;
         }
 
         if (isBackstagePasses)
         {
-            if (SellIn < 0)
+            UpdateQuality(SellIn switch
             {
-                Quality = 0;
-            }
-            else
-            {
-                UpdateQuality(SellIn switch
-                {
-                    < 5 => 3,
-                    < 10 => 2,
-                    _ => 1
-                });
-            }
+                < 0 => 0,
+                < 5 => 3,
+                < 10 => 2,
+                _ => 1
+            });
 
             return;
         }
 
-        if (SellIn < 0)
+        UpdateQuality(SellIn switch
         {
-            UpdateQuality(-2);
-        }
-        else
-        {
-            UpdateQuality(-1);
-        }
+            < 0 => -2,
+            _ => -1
+        });
     }
 
     private void DecreaseSellInDays()
@@ -68,6 +56,7 @@ public class Item
 
     private void UpdateQuality(int change)
     {
+        if (change == 0) Quality = 0;
         Quality += change;
         Quality = Math.Clamp(Quality, 0, 50);
     }
