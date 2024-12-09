@@ -2,7 +2,7 @@
 
 namespace GildedRoseKata;
 
-public class UpdatableItem
+public class UpdatableItem : IUpdatableItem
 {
     private Item _item;
 

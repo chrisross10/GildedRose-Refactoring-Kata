@@ -4,18 +4,22 @@ namespace GildedRoseKata;
 
 public class GildedRose
 {
-    IList<Item> Items;
+    private readonly List<IUpdatableItem> _updatableItems;
 
     public GildedRose(IList<Item> Items)
     {
-        this.Items = Items;
+        _updatableItems = new List<IUpdatableItem>();
+        foreach (var item in Items)
+        {
+            _updatableItems.Add(new UpdatableItem(item));
+        }
     }
 
     public void UpdateQuality()
     {
-        foreach (var item in Items)
+        foreach (var item in _updatableItems)
         {
-            item.UpdatableItem.UpdateItem();
+            item.UpdateItem();
         }
     }
 }
