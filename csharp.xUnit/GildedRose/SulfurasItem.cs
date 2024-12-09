@@ -1,14 +1,7 @@
 ﻿namespace GildedRoseKata;
 
-public class SulfurasItem : IUpdatableItem
+public class SulfurasItem(Item item) : IUpdatableItem
 {
-    private Item _item;
-
-    public SulfurasItem(Item item)
-    {
-        _item = item;
-    }
-
     public void UpdateItem()
     {
         UpdateSellInDays(0);
@@ -16,6 +9,6 @@ public class SulfurasItem : IUpdatableItem
     
     private void UpdateSellInDays(int days)
     {
-        _item.SellIn += days;
+        item.SellIn += days;
     }
 }
