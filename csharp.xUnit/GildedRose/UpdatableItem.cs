@@ -6,11 +6,13 @@ public class UpdatableItem : IUpdatableItem
 {
     private readonly Item _item;
     private readonly AgedBrieItem _agedBrieItem;
+    private readonly BackstagePassesItem _backstagePassesItem;
 
     public UpdatableItem(Item item)
     {
         _item = item;
         _agedBrieItem = new AgedBrieItem(item);
+        _backstagePassesItem = new BackstagePassesItem(item);
     }
 
     public void UpdateItem()
@@ -24,7 +26,7 @@ public class UpdatableItem : IUpdatableItem
 
         if (_item.Name == "Backstage passes to a TAFKAL80ETC concert")
         {
-            UpdateBackstagePasses();
+            _backstagePassesItem.UpdateItem();
 
             return;
         }
@@ -46,18 +48,6 @@ public class UpdatableItem : IUpdatableItem
         {
             < 0 => -2,
             _ => -1
-        });
-    }
-
-    private void UpdateBackstagePasses()
-    {
-        UpdateSellInDays(-1);
-        UpdateQuality(_item.SellIn switch
-        {
-            < 0 => 0,
-            < 5 => 3,
-            < 10 => 2,
-            _ => 1
         });
     }
 
