@@ -4,18 +4,20 @@ namespace GildedRoseKata;
 
 public class UpdatableItem : IUpdatableItem
 {
-    private Item _item;
+    private readonly Item _item;
+    private readonly AgedBrieItem _agedBrieItem;
 
     public UpdatableItem(Item item)
     {
         _item = item;
+        _agedBrieItem = new AgedBrieItem(item);
     }
 
     public void UpdateItem()
     {
         if (_item.Name == "Aged Brie")
         {
-            UpdateAgedBrie();
+            _agedBrieItem.UpdateItem();
 
             return;
         }
@@ -55,16 +57,6 @@ public class UpdatableItem : IUpdatableItem
             < 0 => 0,
             < 5 => 3,
             < 10 => 2,
-            _ => 1
-        });
-    }
-
-    private void UpdateAgedBrie()
-    {
-        UpdateSellInDays(-1);
-        UpdateQuality(_item.SellIn switch
-        {
-            < 0 => 2,
             _ => 1
         });
     }
