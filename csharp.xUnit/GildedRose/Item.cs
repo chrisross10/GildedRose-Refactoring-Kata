@@ -29,23 +29,18 @@ public class Item
         {
             if (isBackstagePasses)
             {
-                UpdateQuality(1);
-
-                if (SellIn < 11)
+                UpdateQuality(SellIn switch
                 {
-                    UpdateQuality(1);
-                }
-
-                if (SellIn < 6)
-                {
-                    UpdateQuality(1);
-                }
+                    < 6 => 3,
+                    < 11 => 2,
+                    _ => 1
+                });
 
                 SellIn -= 1;
 
                 if (SellIn < 0)
                 {
-                    UpdateQuality(-Quality);
+                    Quality = 0;
                 }
             }
             else
